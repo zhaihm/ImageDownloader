@@ -8,5 +8,11 @@
 	"permissions": [
 		"tabs",
         "activeTab"
-	    ]
+	    ],
+    "content_security_policy": "script-src 'self'; object-src 'self'",
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["content.js"],
+        "run_at": "document_start"
+        }]
 }
