@@ -7,7 +7,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
         var imgList = document.getElementsByTagName('img');
         var imgUrlList = [];
         for (var i = 0; i < imgList.length; i++) {
-            var url = imgList[0].src;
+            var url = imgList[i].src;
             imgUrlList.push(url);
         }
         console.log(imgUrlList)
