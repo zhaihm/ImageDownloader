@@ -1,11 +1,22 @@
 <html>
 <head>
+<script src="helper.js"></script>
 <script src="popup.js"></script>
 <script src="jquery-2.2.4.min.js"></script>
 <style type="text/css">
 </style>
 </head>
 <body>
-<input id="downloadAll" type="button" value="Download All" />
+<div>
+    <input id="path" type="edit" placeholder="Download into folder" />
+    <input id="downloadAll" type="button" value="Download All" />
+</div>
+<div>
+    Filter by types:
+    <input type="checkbox" title="gif" checked />gif
+    <input type="checkbox" title="jpg/jpeg" checked />jpg/jpeg
+    <input type="checkbox" title="png" checked />png
+    <input type="checkbox" title="bmp" checked />bmp
+</div>
 </body>
 </html>
