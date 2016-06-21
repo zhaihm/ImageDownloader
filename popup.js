@@ -27,18 +27,21 @@ function initImgTable(imgUrlList) {
 }
 
 function downloadAll() {
-    var imgList = document.getElementsByTagName('img');
     var folder = $.trim(document.getElementById('path').value);
-    for (var i = 0; i < imgList.length; i++) {
-        chrome.downloads.download({
-            url: imgList[i].src//,
-            //filename: (value == "") ?
-        });
-    }
+    var imgList = getDownloadList();
+    console.log(getDownloadList());
+
+    // for (var i = 0; i < imgList.length; i++) {
+    //     chrome.downloads.download({
+    //         url: imgList[i],
+    //         filename: (folder == "") ?
+    //     });
+    // }
 }
 
+// Get selected types from checkbox
 function getDownloadTypes() {
-    var checkboxList = document.getElementsByTagName('checkbox');
+    var checkboxList = $('input[type=checkbox]');
     var types = [];
     for (var i = 0; i < checkboxList.length; ++i) {
         if (checkboxList[i].checked) {
@@ -46,4 +49,25 @@ function getDownloadTypes() {
         }
     }
     return types;
+}
+
+// Get image list to download filtered by selected types in checkbox
+function getDownloadList() {
+    var types = getDownloadTypes();
+    var imgList = $('img');
+    var downloadList = [];
+    
+    for (var i = 0; i < imgList.length; i++) {
+        var imgType;
+        if (StringHelper.startWith(imgList[i].src, 'http')) {
+            imgType = '';
+        } else if (StringHelper.startWith(imgList[i].src, 'data')) {
+            imgType = /data:image\/(.*);.*/.exec(imgList[i].src)[1];
+        }
+
+        if (ArrayHelper.inArray(imgType, types)) {
+            downloadList.append(imgList[i].src);
+        }
+    }
+    return downloadList;
 }

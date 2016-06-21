@@ -10,5 +10,15 @@ ArrayHelper = {
             }
         });
         return ret;
+    },
+
+    inArray: function(value, arr) {
+        return arr.indexOf(value) != -1;
+    }
+};
+
+StringHelper = {
+    startWith: function(str, prefix) {
+        return (str.substr(0, prefix.length) == str);
     }
 };
